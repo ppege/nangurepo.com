@@ -1,17 +1,10 @@
 import React from 'react'
 import logo from '../logo.png'
-import $ from 'jquery'
-import { useNavigate } from "react-router-dom";
 
 export default function Header(props) {
-  let navigate = useNavigate();
-  const routeChange = (url) => {
-    $('.fade-in').addClass('fade-out');
-    navigate(url);
-  }
   return (
       <>
-        <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-slate-600 shadow-lg">
+        <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800">
           <div className="container flex flex-wrap justify-between items-center mx-auto">
             <a href="/" className="flex items-center">
                 <img src={logo} className="mr-3 h-6 sm:h-10 rounded-full" alt="NanguRepo Logo" />
@@ -23,14 +16,14 @@ export default function Header(props) {
               <svg className="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
             </button>
             <div className="hidden w-full md:block md:w-auto" id="mobile-menu">
-              <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
+              <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-lg md:font-medium">
                 {[
                   ['Home', '/'],
                   ['My Projects', '/projects'],
                   ['Contact', '/contact'],
                 ].map(([title, url]) => (
-                  <li>
-                    <button onClick={routeChange(url)} className={`navbar-item hover-underline-animation text-black dark:text-white hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 ${title === props.page ? 'font-bold': ''}`} aria-current="page">{title}</button>
+                  <li key={title}>
+                    <a href={url} key={title} className={`navbar-item text-black dark:text-white hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 ${title === props.page ? 'font-bold underline': 'hover-underline-animation'}`} aria-current="page">{title}</a>
                   </li>
                 ))}
               </ul>

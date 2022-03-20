@@ -1,7 +1,6 @@
 import './App.css';
 import React from 'react'
 import { Route, Routes } from "react-router-dom"
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import Home from './pages/home.js'
 import Projects from './pages/projects.js'
 import Contact from './pages/contact.js'

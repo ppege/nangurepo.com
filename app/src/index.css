@@ -68,18 +68,3 @@
         transform: translateY(0);
     }
 }
-
-.fade-out {
-    animation: fade-out-move-down 2.0s;
-}
-
-@keyframes fade-out-move-down {
-    0% {
-        opacity: 1;
-        transform: translateY(0rem);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-5rem);
-    }
-}
