@@ -1,13 +1,17 @@
 import './App.css';
 import React from 'react'
-import Navbar from './components/Navbar.js'
-import MainContent from './components/Homepage.js'
+import { Route, Routes } from "react-router-dom"
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import Home from './pages/home.js'
+import Projects from './pages/projects.js'
+import Contact from './pages/contact.js'
 
 export default function App() {
   return (
-    <>
-      <Navbar />
-      <MainContent />
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/projects" element={<Projects />} />
+      <Route path="/contact" element={<Contact />} />
+    </Routes>
   );
 }
