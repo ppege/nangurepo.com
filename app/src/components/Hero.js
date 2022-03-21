@@ -7,7 +7,7 @@ export default function Hero(props) {
             <h1 className="text-7xl font-bold">
                 <Typewriter onInit={(typewriter) => {typewriter.typeString(props.title).start();}}/>
             </h1>
-            <h2 className="text-3xl mt-5">{props.subtitle}</h2>
+            <h2 className="text-3xl mt-5 fade-in">{props.subtitle}</h2>
         </>
     );
   }

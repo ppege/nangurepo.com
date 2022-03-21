@@ -4,7 +4,7 @@ import logo from '../logo.png'
 export default function Header(props) {
   return (
       <>
-        <nav className="bg-white fade-in-top border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800">
+        <nav className="bg-transparent fade-in-top px-2 sm:px-4 py-2.5 sticky top-0 z-50">
           <div className="container flex flex-wrap justify-between items-center mx-auto">
             <a href="/" className="flex items-center">
                 <img src={logo} className="mr-3 h-6 sm:h-10 rounded-full" alt="NanguRepo Logo" />
