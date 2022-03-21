@@ -58,10 +58,25 @@
     animation: fade-in-move-up 2.0s;
 }
 
+.fade-in-top {
+    animation: fade-in-move-down 1.0s;
+}
+
 @keyframes fade-in-move-up {
     0% {
         opacity: 0;
         transform: translateY(5rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in-move-down {
+    0% {
+        opacity: 0;
+        transform: translateY(-5rem);
     }
     100% {
         opacity: 1;

@@ -4,7 +4,7 @@ import logo from '../logo.png'
 export default function Header(props) {
   return (
       <>
-        <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800">
+        <nav className="bg-white fade-in-top border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800">
           <div className="container flex flex-wrap justify-between items-center mx-auto">
             <a href="/" className="flex items-center">
                 <img src={logo} className="mr-3 h-6 sm:h-10 rounded-full" alt="NanguRepo Logo" />
@@ -21,7 +21,7 @@ export default function Header(props) {
                   ['Home', '/'],
                   ['My Projects', '/projects'],
                   ['Contact', '/contact'],
-                  ['GitHub', 'https://github.com/nangurepo']
+                  ['GitHub', '/github']
                 ].map(([title, url]) => (
                   <li key={title}>
                     <a href={url} key={title} className={`navbar-item text-black dark:text-white hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 ${title === props.page ? 'font-bold underline': 'hover-underline-animation'}`} aria-current="page">{title}</a>
