@@ -8,7 +8,7 @@
         @apply block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 font-mono;
     }
     .app-icon {
-        @apply object-cover w-48 h-48 rounded-3xl;
+        @apply object-cover w-full h-full md:w-48 md:h-48 md:rounded-3xl;
     }
 
 }
@@ -110,6 +110,19 @@
 
 .fade-in-top {
     animation: fade-in-move-down 1.0s;
+}
+
+.push-up {
+    animation: push-up 1.0s;
+}
+
+@keyframes push-up {
+    0% {
+        transform: translateY(5rem);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
 
 @keyframes fade-in {

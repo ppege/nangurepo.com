@@ -10,14 +10,14 @@ import ApiLogo from '../api.png'
 
 export default function Projects() {
     return (
-      <div className="dark:bg-gray-800 h-screen">
+      <div className="dark:bg-gray-800">
         <Header page="My Projects" />
-        <div className="p-40 h-screen font-mono dark:text-white fade-in-down">
+        <div className="p-40 -mb-20 h-auto font-mono dark:text-white fade-in-down">
           <Hero title="My Projects" subtitle="These are the projects I've created." />
-          <div className="lg:columns-3 mb-20 mt-10">
-            <ImageButton href='https://viggoscrape.nangurepo.com' text="Viggoscrape" image={<img src={ViggoscrapeLogo} className="app-icon" />} newTab={true} />
-            <ImageButton href='https://assassin.nangurepo.com' text="Assassin Searcher" image={<img src={AssassinSearcherLogo} className="app-icon" />} newTab={true} />
-            <ImageButton href='https://api.nangurepo.com' text="NanguRepo API" image={<img src={ApiLogo} className="app-icon" />} newTab={true} />
+          <div className="lg:columns-3 mt-10">
+            <ImageButton href='https://viggoscrape.nangurepo.com' text="Viggoscrape" image={<img src={ViggoscrapeLogo} className="app-icon" />} />
+            <ImageButton href='https://assassin.nangurepo.com' text="Assassin Searcher" image={<img src={AssassinSearcherLogo} className="app-icon" />} />
+            <ImageButton href='https://api.nangurepo.com' text="NanguRepo API" image={<img src={ApiLogo} className="app-icon" />} />
           </div>
         </div>
         <Footer />
