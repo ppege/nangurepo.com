@@ -8,7 +8,10 @@
         @apply block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 font-mono;
     }
     .app-icon {
-        @apply object-cover w-full h-full md:w-48 md:h-48 md:rounded-3xl;
+        @apply object-cover w-48 h-48 rounded-3xl;
+    }
+    .hero-container {
+        @apply p-1 md:p-40 h-auto w-fit items-center md:w-auto font-mono dark:text-white fade-in-down;
     }
 
 }

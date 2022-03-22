@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="dark:bg-gray-800">
       <Header page="Home" />
-      <div className="p-40 h-auto font-mono dark:text-white fade-in-down">
+      <div className="hero-container">
         <Hero title="NanguRepo" subtitle="Web developer, React.js learner and API maintainer." />
         <div className="lg:columns-3 mt-10">
           <div><IconButton href='/#/projects' text="My projects" icon={<FaBoxOpen size="100" />} className="text-4xl h-full w-full font-sans" /></div>

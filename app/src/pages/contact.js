@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="dark:bg-gray-800">
       <Header page="Contact" />
-      <div class="p-40 h-auto font-mono dark:text-white fade-in-down">
+      <div className="hero-container">
         <Hero title="Contact me" subtitle="These are my social media profiles, where you can contact me." />
         <div className="mt-10" />
         <div className="lg:columns-4">

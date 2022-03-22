@@ -12,7 +12,7 @@ export default function Projects() {
     return (
       <div className="dark:bg-gray-800">
         <Header page="My Projects" />
-        <div className="p-40 -mb-20 h-auto font-mono dark:text-white fade-in-down">
+        <div className="hero-container">
           <Hero title="My Projects" subtitle="These are the projects I've created." />
           <div className="lg:columns-3 mt-10">
             <ImageButton href='https://viggoscrape.nangurepo.com' text="Viggoscrape" image={<img src={ViggoscrapeLogo} className="app-icon" />} />
