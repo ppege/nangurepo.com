@@ -5,7 +5,7 @@ import Hero from '../components/Hero.js'
 import ImageButton from '../components/ImageButton.js'
 import Footer from '../components/Footer.js'
 import ViggoscrapeLogo from '../viggoscrape.ico'
-import AssassinSearcherLogo from '../assassinsearcher.ico'
+import ViggoViewerLogo from '../viggoscrape.ico'
 import ApiLogo from '../api.png'
 
 export default function Projects() {
@@ -15,9 +15,9 @@ export default function Projects() {
         <div className="hero-container">
           <Hero title="My Projects" subtitle="These are the projects I've created." />
           <div className="lg:columns-3 mt-10">
-            <ImageButton href='https://viggoscrape.nangurepo.com' text="Viggoscrape" image={<img src={ViggoscrapeLogo} className="app-icon" />} />
-            <ImageButton href='https://assassin.nangurepo.com' text="Assassin Searcher" image={<img src={AssassinSearcherLogo} className="app-icon" />} />
-            <ImageButton href='https://api.nangurepo.com' text="NanguRepo API" image={<img src={ApiLogo} className="app-icon" />} />
+            <ImageButton href='https://viggoscrape.nangurepo.com' text="Viggoscrape" image={<img src={ViggoscrapeLogo} className="app-icon" alt="Viggoscrape logo" />} />
+            <ImageButton href='https://viewer.nangurepo.com' text="Viggo Viewer" image={<img src={ViggoViewerLogo} className="app-icon" alt="Viggo Viewer logo" />} />
+            <ImageButton href='https://api.nangurepo.com' text="NanguRepo API" image={<img src={ApiLogo} className="app-icon" alt="API logo" />} />
           </div>
         </div>
         <Footer />
