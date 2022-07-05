@@ -1,2 +1,0 @@
-# nangurepo.com
-My website
