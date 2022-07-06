@@ -1,7 +1,7 @@
 <script lang="ts">
     import Fa from 'svelte-fa/src/fa.svelte'
-    import { faGithub, faTwitter, faReddit, faDiscord, type IconDefinition } from '@fortawesome/free-brands-svg-icons'
-    import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+    import { faGithub, faTwitter, faReddit, faDiscord, type IconDefinition } from '@fortawesome/free-brands-svg-icons/index.es'
+    import { faEnvelope } from '@fortawesome/free-solid-svg-icons/index.es'
     interface Project {
         name: string;
         url: string;
