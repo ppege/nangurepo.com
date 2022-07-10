@@ -5,11 +5,13 @@
 <script lang="ts">
     import { page } from '$app/stores'
     import Fa from 'svelte-fa/src/fa.svelte'
+    import { faCode, faEye } from '@fortawesome/free-solid-svg-icons/index.es'
     import Nav from './components/nav.svelte'
     interface Project {
         name: string;
-        url: string;
         description: string;
+        url: string;
+        source: string;
     }
     interface contact {
         platform: string;
@@ -18,28 +20,34 @@
     let projects: Array<Project> = [
         {
             name: "DVD Screensaver",
+            description: "A tool to generate your own version of the iconic DVD screensaver. You can tweak and customize it to your heart's content.",
             url: "https://dvd.nangurepo.com",
-            description: "A tool to generate your own version of the iconic DVD screensaver. You can tweak and customize it to your heart's content."
+            source: "https://github.com/nangurepo/dvd"
         }, {
             name: "Collatz Conjecture Visualizer",
+            description: "A web app that visualizes the Collatz Conjecture using a graph. Try giving it the numbers 25, 26 and 27. You'll see the randomness of it. Pretty cool 👍",
             url: "https://collatz.nangurepo.com",
-            description: "A web app that visualizes the Collatz Conjecture using a graph. Try giving it the numbers 25, 26 and 27. You'll see the randomness of it. Pretty cool 👍"
+            source: "https://github.com/nangurepo/collatz"
         }, {
             name: "Viggoscrape",
+            description: "An unofficial API for Viggo, a danish school management website. It allows you to get assignment data to use in other applications.",
             url: "https://viggoscrape.nangurepo.com",
-            description: "An unofficial API for Viggo, a danish school management website. It allows you to get assignment data to use in other applications."
+            source: "https://github.com/nangurepo/viggoscrapeapi/tree/page"
         }, {
             name: "Viggo Viewer",
+            description: "A viewer for the Viggo website, as I didn't like the official one. Uses the Viggoscrape API, and by extension, the NanguRepo API.",
             url: "https://viewer.nangurepo.com",
-            description: "A viewer for the Viggo website, as I didn't like the official one. Uses the Viggoscrape API, and by extension, the NanguRepo API."
+            source: "https://github.com/nangurepo/vsc-viewer"
         }, {
             name: "Assassin! Tools",
+            description: "A web app that helps find values of knives in the Roblox game, \"Assassin!\". I made this a while ago using vanilla JS, and I haven't updated the values in months. Don't use this for anything other than testing.",
             url: "https://assassin.nangurepo.com",
-            description: "A web app that helps find values of knives in the Roblox game, \"Assassin!\". I made this a while ago using vanilla JS, and I haven't updated the values in months. Don't use this for anything other than testing."
+            source: "https://github.com/nangurepo/assassinsearcher"
         }, {
             name: "NanguRepo API",
+            description: "The API used by my other projects. It's public, you can use it for your own projects if you'd like.",
             url: "https://api.nangurepo.com",
-            description: "The API used by my other projects. It's public, you can use it for your own projects if you'd like."
+            source: "https://github.com/nangurepo/viggoscrapeapi/tree/api"
         }
     ]
 let contacts: Array<contact> = [
@@ -74,7 +82,7 @@ $: description = "On the left you'll see the projects I've made. Hover over them
         </header>
         <main class="w-full">
             <article class="max-w-[75ch] mx-auto pt-20 pb-28 px-5">
-                <h1 class="text-3xl font-black dark:text-white">This is NanguRepo</h1>
+                <h1 class="text-3xl font-black dark:text-white" >This is NanguRepo</h1>
                 <div class="mt-5">
                     <p>
                         I'm a hobbyist web developer, and this is my repository for my web projects. I do freelance work on <a class="link" href="https://fiverr.com/nangu_" target="_blank">Fiverr</a>, while also building some projects of my own when I get an interesting idea.
@@ -83,12 +91,12 @@ $: description = "On the left you'll see the projects I've made. Hover over them
                         I'm also a frequent open source contributor and currently working on my latest project, my <a class="link" href="https://dvd.nangurepo.com" target="_blank">DVD screensaver generator</a>.
                     </p>
                     <p class="mt-6">
-                        My goal is to create functional web experiences with function over form as the key philosophy. If you wish to reach out, find me on the interwebz.
+                        My goal is to create truly functional web experiences with function over form as a general rule. If you want to reach out, find me on the web.
                     </p>
                 </div>
                 <div class="flex flex-row w-full justify-center sm:justify-start sm:w-fit rounded gap-2 pt-2">
                     {#each contacts as contact}
-                    <a class="button" href={contact.url} target="_blank">
+                    <a class="button font-sans" href={contact.url} target="_blank">
                         {contact.platform}
                     </a>
                     {/each}
@@ -97,13 +105,23 @@ $: description = "On the left you'll see the projects I've made. Hover over them
                 <div class="divide-y dark:divide-neutral-700 -mt-4">
                     {#each projects as project}
                     <div class="py-6">
-                        <a 
-                        class="dark:text-white dark:hover:bg-white dark:hover:text-black hover:bg-black hover:text-white hover:before:content-['>'] hover:underline rounded -ml-1 px-1 py-1 font-bold"
-                        target="_blank"
-                        href={project.url}
-                        >
-                            {project.name}
-                        </a>
+                        <div class="flex flex-row justify-between">
+                            <a 
+                            class="dark:text-white dark:hover:bg-white dark:hover:text-black hover:bg-black hover:text-white hover:before:content-['>'] hover:underline rounded -ml-1 px-1 py-1 font-bold"
+                            target="_blank"
+                            href={project.url}
+                            >
+                                {project.name}
+                            </a>
+                            <div class="flex flex-row gap-2">
+                                <a class="link flex flex-row items-center gap-1" href={project.url}>
+                                    <Fa icon={faEye}/> Visit
+                                </a>
+                                <a class="link flex flex-row items-center gap-1" href={project.source}>
+                                    <Fa icon={faCode}/> Source
+                                </a>
+                            </div>
+                        </div>
                         <p>
                             {project.description}
                         </p>

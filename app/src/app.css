@@ -13,13 +13,13 @@
         @apply border-yellow-300;
     }
     .hoverable {
-        @apply text-black w-auto h-auto rounded-[0.18rem] text-center bg-gray-200 hover:bg-accent transition-colors dark:bg-zinc-800 dark:text-neutral-400 dark:hover:text-black font-bold;
+        @apply text-black w-auto h-auto rounded-[0.18rem] text-center bg-gray-200 hover:bg-accent transition-colors dark:bg-zinc-800 dark:text-neutral-400 dark:hover:text-black;
     }
     .link {
         @apply hoverable px-[0.15rem] py-[0.1rem];
     }
     .button {
-        @apply hoverable p-[0.45rem];
+        @apply hoverable font-bold p-[0.45rem];
     }
     .navbar-item {
         @apply text-neutral-400 hover:text-black dark:text-neutral-500 dark:hover:text-accent transition-colors mx-4
