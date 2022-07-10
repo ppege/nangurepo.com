@@ -1,0 +1,8 @@
+/* fonts.css */
+
+@font-face {
+    font-family: 'iA Quattro';
+    font-style: normal;
+    font-weight: 500;
+    src: url('/fonts/iAWriterQuattroSRegular.ttf') format('truetype');
+}

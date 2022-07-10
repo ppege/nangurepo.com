@@ -1,14 +1,18 @@
+<script context="module">
+	export const prerender = true;
+</script>
+
 <script lang="ts">
+    import { page } from '$app/stores'
     import Fa from 'svelte-fa/src/fa.svelte'
-    import { faGithub, faTwitter, faReddit, faDiscord, type IconDefinition } from '@fortawesome/free-brands-svg-icons/index.es'
-    import { faEnvelope } from '@fortawesome/free-solid-svg-icons/index.es'
+    import Nav from './components/nav.svelte'
     interface Project {
         name: string;
         url: string;
         description: string;
     }
-    interface contactIcon {
-        icon: IconDefinition;
+    interface contact {
+        platform: string;
         url: string;
     }
     let projects: Array<Project> = [
@@ -38,22 +42,22 @@
             description: "The API used by my other projects. It's public, you can use it for your own projects if you'd like."
         }
     ]
-let contactIcons: Array<contactIcon> = [
+let contacts: Array<contact> = [
     {
-        icon: faGithub,
+        platform: "github",
         url: "https://github.com/nangurepo"
     }, {
-        icon: faTwitter,
+        platform: "fiverr",
+        url: "https://www.fiverr.com/Nangu_"
+    }, {
+        platform: "email",
+        url: "mailto:nanguthenangu@gmail.com"
+    }, {
+        platform: "twitter",
         url: "https://twitter.com/ytnangu"
     }, {
-        icon: faReddit,
-        url: "https://reddit.com/u/nangu_"
-    }, {
-        icon: faDiscord,
+        platform: "discord",
         url: "https://discord.gg/xJK9VtVguF"
-    }, {
-        icon: faEnvelope,
-        url: "mailto:nanguthenangu@gmail.com"
     }
 ]
 $: description = "On the left you'll see the projects I've made. Hover over them to see a description, and click to visit the project."
@@ -63,42 +67,50 @@ $: description = "On the left you'll see the projects I've made. Hover over them
     <title>NanguRepo</title>
 </svelte:head>
 
-<body class="dark:bg-slate-800 dark:text-white selection:bg-black selection:text-white dark:selection:bg-yellow-100 dark:selection:text-black">
-    <div class="ml-2 mr-2 sm:ml-20 sm:mr-20 sm:mt-5 mb-4">
-        <div class="flex flex-row gap-1 bg-gradient-to-r from-purple-400 to-pink-600 w-full justify-center sm:justify-start sm:w-fit rounded py-2 px-2">
-            {#each contactIcons as contactIcon}
-            <button class="w-auto h-auto rounded text-center text-white hover:text-black" on:click={()=>window.open(contactIcon.url, '_blank')}>
-                <Fa icon={contactIcon.icon} size="48" />
-            </button>
-            {/each}
-        </div>
-        <h1 class="text-5xl sm:text-6xl md:text-8xl font-extrabold text-transparent py-2 w-fit bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">NanguRepo</h1>
-        <h2 class="text-2xl sm:text-4xl">I make web projects for fun.</h2>
-        <div class="flex flex-col md:flex-row mt-5 w-full md:divide-x">
-            <div class="rounded p-4 font-mono md:text-right md:w-1/2">
-                <h3 class="text-3xl font-bold md:ml-auto w-fit bg-gradient-to-r from-blue-500 to-purple-400 text-white rounded">Projects</h3>
-                <ul class="text-xl md:text-2xl mt-1 font-bold">
+<body class="dark:bg-[#0D0D10] dark:text-neutral-400 selection:bg-black selection:text-white dark:selection:bg-yellow-300 dark:selection:text-black font-mono">
+    <div class="w-full h-full">
+        <header class="relative w-full h-16">
+            <Nav/>
+        </header>
+        <main class="w-full">
+            <article class="max-w-[75ch] mx-auto pt-20 pb-28 px-5">
+                <h1 class="text-3xl font-black dark:text-white">This is NanguRepo</h1>
+                <div class="mt-5">
+                    <p>
+                        I'm a hobbyist web developer, and this is my repository for my web projects. I do freelance work on <a class="link" href="https://fiverr.com/nangu_" target="_blank">Fiverr</a>, while also building some projects of my own when I get an interesting idea.
+                    </p>
+                    <p class="mt-6">
+                        I'm also a frequent open source contributor and currently working on my latest project, my <a class="link" href="https://dvd.nangurepo.com" target="_blank">DVD screensaver generator</a>.
+                    </p>
+                    <p class="mt-6">
+                        My goal is to create functional web experiences with function over form as the key philosophy. If you wish to reach out, find me on the interwebz.
+                    </p>
+                </div>
+                <div class="flex flex-row w-full justify-center sm:justify-start sm:w-fit rounded gap-2 pt-2">
+                    {#each contacts as contact}
+                    <a class="button" href={contact.url} target="_blank">
+                        {contact.platform}
+                    </a>
+                    {/each}
+                </div>
+                <h3 class="text-2xl font-bold dark:text-white mt-6">Projects</h3>
+                <div class="divide-y dark:divide-neutral-700 -mt-4">
                     {#each projects as project}
-                    <li>
+                    <div class="py-6">
                         <a 
-                        class="dark:hover:bg-white dark:hover:text-black hover:bg-black hover:text-white hover:before:content-['>'] hover:underline rounded px-1 py-1"
+                        class="dark:text-white dark:hover:bg-white dark:hover:text-black hover:bg-black hover:text-white hover:before:content-['>'] hover:underline rounded -ml-1 px-1 py-1 font-bold"
                         target="_blank"
                         href={project.url}
-                        on:mouseover={()=>description = project.description}
-                        on:focus={()=>description = project.description}
                         >
                             {project.name}
                         </a>
-                    </li>
+                        <p>
+                            {project.description}
+                        </p>
+                    </div>
                     {/each}
-                </ul>
-            </div>
-            <div class="rounded p-4 font-mono md:w-1/2">
-                <h3 class="text-3xl font-bold w-fit bg-gradient-to-r from-pink-500 to-purple-400 text-white rounded">Description</h3>
-                <p class="text-xl mt-1">
-                    {description}
-                </p>
-            </div>
-        </div>
+                </div>
+            </article>
+        </main>
     </div>
 </body>
