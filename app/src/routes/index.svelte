@@ -1,104 +1,166 @@
+<script context="module">
+	export const prerender = true;
+</script>
+
 <script lang="ts">
+    import { fade, draw } from 'svelte/transition'
+    import { quintOut } from 'svelte/easing';
+    import { onMount } from 'svelte'
+    import { page } from '$app/stores'
     import Fa from 'svelte-fa/src/fa.svelte'
-    import { faGithub, faTwitter, faReddit, faDiscord, type IconDefinition } from '@fortawesome/free-brands-svg-icons/index.es'
-    import { faEnvelope } from '@fortawesome/free-solid-svg-icons/index.es'
+    import { faCode } from '@fortawesome/free-solid-svg-icons/index.es'
+    import Nav from './components/nav.svelte'
+    import MediaQuery from './components/MediaQuery.svelte'
+    let visible = false;
+    let drawLine = false;
+    onMount(() => {
+        visible = true;
+        setTimeout(() => {
+            drawLine = true;
+        }, 200);
+    })
     interface Project {
         name: string;
-        url: string;
         description: string;
+        url: string;
+        source: string;
     }
-    interface contactIcon {
-        icon: IconDefinition;
+    interface contact {
+        platform: string;
         url: string;
     }
     let projects: Array<Project> = [
         {
-            name: "DVD Screensaver",
+            name: "DVD Screensaver Generator",
+            description: "A tool to generate your own version of the iconic DVD screensaver. You can tweak and customize it to your heart's content. It's customizable from the speed at which it travels, to the images used, to what happens on collision.",
             url: "https://dvd.nangurepo.com",
-            description: "A tool to generate your own version of the iconic DVD screensaver. You can tweak and customize it to your heart's content."
+            source: "https://github.com/nangurepo/dvd"
         }, {
             name: "Collatz Conjecture Visualizer",
+            description: "A web app that visualizes the Collatz conjecture using a graph. The Collatz conjecture is one of the most famous unsolved problems in mathematics. The conjecture asks whether repeating two simple arithmetic operations will eventually transform every positive integer into 1.",
             url: "https://collatz.nangurepo.com",
-            description: "A web app that visualizes the Collatz Conjecture using a graph. Try giving it the numbers 25, 26 and 27. You'll see the randomness of it. Pretty cool 👍"
+            source: "https://github.com/nangurepo/collatz"
         }, {
             name: "Viggoscrape",
+            description: "An unofficial API for Viggo, a danish school management website. It allows you to get assignment data to use in other applications. Through several iterations, I have gotten the response time down to less than a second. Viggo does have a built-in API, but it's extremely obscure, and I still haven't figured out how to use it.",
             url: "https://viggoscrape.nangurepo.com",
-            description: "An unofficial API for Viggo, a danish school management website. It allows you to get assignment data to use in other applications."
+            source: "https://github.com/nangurepo/viggoscrapeapi/tree/page"
         }, {
             name: "Viggo Viewer",
+            description: "A viewer for the Viggo website, as I didn't like the official one. Built with React. Powered by, you guessed it, Viggoscrape. And most importantly, it's open source. It even remembers your login details, so you don't have to login every time you visit the site. This is somehow not a feature on the official site.",
             url: "https://viewer.nangurepo.com",
-            description: "A viewer for the Viggo website, as I didn't like the official one. Uses the Viggoscrape API, and by extension, the NanguRepo API."
+            source: "https://github.com/nangurepo/vsc-viewer"
+        }, {
+            name: "Fessor Bot",
+            description: "A Discord bot i made in the start of 2021 using discord.py. It has some uniquely useful commands, such as my personal favorite, /bury: clear the chat without deleting messages by having the bot send a shit ton of Zero-Width Non-Joiners. The bot is currently private, but if you need it on your server, contact me.",
+            url: "/",
+            source: "github.com/nangurepo/fessor"
         }, {
             name: "Assassin! Tools",
+            description: "A web app that helps find values of knives in the Roblox game, \"Assassin!\". I made this a while ago using vanilla JS, and I haven't updated the values in months. Don't use this for anything other than testing. It was extremely useful, as the official value list is a spreadsheet with no search functionality.",
             url: "https://assassin.nangurepo.com",
-            description: "A web app that helps find values of knives in the Roblox game, \"Assassin!\". I made this a while ago using vanilla JS, and I haven't updated the values in months. Don't use this for anything other than testing."
+            source: "https://github.com/nangurepo/assassinsearcher"
         }, {
             name: "NanguRepo API",
+            description: "The API used by my other projects. It's public, you can use it for your own projects if you'd like. This is the API through which to access Viggoscrape. It was also used by the Assassin! Tools app.",
             url: "https://api.nangurepo.com",
-            description: "The API used by my other projects. It's public, you can use it for your own projects if you'd like."
+            source: "https://github.com/nangurepo/viggoscrapeapi/tree/api"
         }
     ]
-let contactIcons: Array<contactIcon> = [
+let contacts: Array<contact> = [
     {
-        icon: faGithub,
+        platform: "github",
         url: "https://github.com/nangurepo"
     }, {
-        icon: faTwitter,
+        platform: "fiverr",
+        url: "https://www.fiverr.com/Nangu_"
+    }, {
+        platform: "email",
+        url: "mailto:nanguthenangu@gmail.com"
+    }, {
+        platform: "twitter",
         url: "https://twitter.com/ytnangu"
     }, {
-        icon: faReddit,
-        url: "https://reddit.com/u/nangu_"
-    }, {
-        icon: faDiscord,
+        platform: "discord",
         url: "https://discord.gg/xJK9VtVguF"
-    }, {
-        icon: faEnvelope,
-        url: "mailto:nanguthenangu@gmail.com"
     }
 ]
 $: description = "On the left you'll see the projects I've made. Hover over them to see a description, and click to visit the project."
 </script>
 
 <svelte:head>
-    <title>NanguRepo</title>
+    <title>
+        {$page.url.hash.charAt(1).toUpperCase() + $page.url.hash.substring(2)} - NanguRepo
+    </title>
 </svelte:head>
-
-<body class="dark:bg-slate-800 dark:text-white selection:bg-black selection:text-white dark:selection:bg-yellow-100 dark:selection:text-black">
-    <div class="ml-2 mr-2 sm:ml-20 sm:mr-20 sm:mt-5 mb-4">
-        <div class="flex flex-row gap-1 bg-gradient-to-r from-purple-400 to-pink-600 w-full justify-center sm:justify-start sm:w-fit rounded py-2 px-2">
-            {#each contactIcons as contactIcon}
-            <button class="w-auto h-auto rounded text-center text-white hover:text-black" on:click={()=>window.open(contactIcon.url, '_blank')}>
-                <Fa icon={contactIcon.icon} size="48" />
-            </button>
-            {/each}
-        </div>
-        <h1 class="text-5xl sm:text-6xl md:text-8xl font-extrabold text-transparent py-2 w-fit bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">NanguRepo</h1>
-        <h2 class="text-2xl sm:text-4xl">I make web projects for fun.</h2>
-        <div class="flex flex-col md:flex-row mt-5 w-full md:divide-x">
-            <div class="rounded p-4 font-mono md:text-right md:w-1/2">
-                <h3 class="text-3xl font-bold md:ml-auto w-fit bg-gradient-to-r from-blue-500 to-purple-400 text-white rounded">Projects</h3>
-                <ul class="text-xl md:text-2xl mt-1 font-bold">
-                    {#each projects as project}
-                    <li>
-                        <a 
-                        class="dark:hover:bg-white dark:hover:text-black hover:bg-black hover:text-white hover:before:content-['>'] hover:underline rounded px-1 py-1"
-                        target="_blank"
-                        href={project.url}
-                        on:mouseover={()=>description = project.description}
-                        on:focus={()=>description = project.description}
-                        >
-                            {project.name}
-                        </a>
-                    </li>
-                    {/each}
-                </ul>
+<html lang="en" class="scroll-smooth">
+    <body class="dark:bg-[#0D0D10] dark:text-neutral-300 selection:bg-black selection:text-white dark:selection:bg-yellow-300 dark:selection:text-black font-mono scroll-smooth">
+        {#if visible}
+            <div class="w-full h-full" transition:fade>
+                <header class="relative w-full h-16">
+                    <Nav/>
+                </header>
+                <main class="w-full">
+                    <article class="max-w-[75ch] mx-auto pt-20 pb-28 px-5" id="about">
+                        <div class="w-fit">
+                            <h1 class="text-3xl font-bold dark:text-white">This is NanguRepo</h1>
+                            <MediaQuery query="(prefers-color-scheme: dark)" let:matches>
+                                <svg class="w-full h-1" preserveAspectRatio="none">
+                                    {#if drawLine}
+                                        <path 
+                                        transition:draw="{{duration: 1500, easing: quintOut}}"
+                                        d="M0,0 L300,0 Z"
+                                        stroke={matches?"white":"black"}
+                                        stroke-width="1px"
+                                        />
+                                    {/if}
+                                </svg>
+                            </MediaQuery>
+                        </div>
+                        <div class="mt-5">
+                            <p>
+                                I'm a hobbyist web developer, and this is my repository for my web projects. I do freelance work on <a class="link" href="https://fiverr.com/nangu_" target="_blank">Fiverr</a>, while also building some <a class="link" href="#projects">projects</a> of my own when I get an interesting idea. I sometimes write webdev-related <a class="link" href="#posts">posts</a> on here.
+                            </p>
+                            <p class="mt-6">
+                                I don't really contribute to open source, but I'm currently working on my latest project, my <a class="link" href="https://dvd.nangurepo.com" target="_blank">DVD screensaver generator</a>.
+                            </p>
+                            <p class="mt-6">
+                                My goal is to create truly functional web experiences with function over form as a general rule of thumb. If you want to reach out, find me on the web.
+                            </p>
+                        </div>
+                        <div class="flex flex-row w-full gap-1 pt-2" id="projects">
+                            {#each contacts as contact}
+                            <a class="button font-sans" href={contact.url} target="_blank">
+                                {contact.platform}
+                            </a>
+                            {/each}
+                        </div>
+                        <h2 class="text-2xl font-bold mt-6">Projects</h2>
+                        <h3 class="text-xs">Click the title to visit the site.</h3>
+                        <div class="divide-y dark:divide-neutral-700 -mt-4">
+                            {#each projects as project}
+                            <div class="py-6">
+                                <div class="flex flex-row justify-between">
+                                    <h3><a 
+                                    class="dark:text-white dark:hover:bg-neutral-600 hover:bg-black hover:text-white hover:before:content-['>'] hover:underline -ml-1 px-1 py-1 font-bold"
+                                    target="_blank"
+                                    href={project.url}
+                                    >
+                                        {project.name}
+                                    </a></h3>
+                                    <a class="link flex flex-row items-center gap-1 text-xs h-fit" href={project.source} target="_blank">
+                                        Source <Fa icon={faCode} size="10"/>
+                                    </a>
+                                </div>
+                                <p class="text-sm">
+                                    {project.description}
+                                </p>
+                            </div>
+                            {/each}
+                        </div>
+                    </article>
+                </main>
             </div>
-            <div class="rounded p-4 font-mono md:w-1/2">
-                <h3 class="text-3xl font-bold w-fit bg-gradient-to-r from-pink-500 to-purple-400 text-white rounded">Description</h3>
-                <p class="text-xl mt-1">
-                    {description}
-                </p>
-            </div>
-        </div>
-    </div>
-</body>
+        {/if}
+    </body>
+</html>

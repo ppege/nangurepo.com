@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .text-accent {
+        @apply text-yellow-300;
+    }
+    .bg-accent {
+        @apply bg-yellow-300;
+    }
+    .border-accent {
+        @apply border-yellow-300;
+    }
+    .highlighted {
+        @apply bg-black/80 text-white dark:bg-accent dark:text-black w-fit;
+    }
+    .hoverable {
+        @apply hover:bg-accent hover:text-black dark:bg-neutral-600 dark:hover:text-black dark:text-white transition-colors duration-200 ease-in-out;
+    }
+    .link {
+        @apply highlighted hoverable px-[0.15rem] rounded-[0.1rem];
+    }
+    .button {
+        @apply highlighted hoverable p-[0.45rem] rounded-[0.2rem] font-bold;
+    }
+    .navbar-item {
+        @apply text-neutral-400 hover:text-black dark:text-neutral-500 dark:hover:text-accent transition-colors mx-1 sm:mx-4
+    }
+}
