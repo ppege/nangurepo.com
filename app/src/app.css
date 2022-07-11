@@ -22,6 +22,6 @@
         @apply hoverable font-bold p-[0.45rem];
     }
     .navbar-item {
-        @apply text-neutral-400 hover:text-black dark:text-neutral-500 dark:hover:text-accent transition-colors mx-4
+        @apply text-neutral-400 hover:text-black dark:text-neutral-500 dark:hover:text-accent transition-colors mx-1 sm:mx-4
     }
 }
