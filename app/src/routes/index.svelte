@@ -3,10 +3,22 @@
 </script>
 
 <script lang="ts">
+    import { fade, draw } from 'svelte/transition'
+    import { quintOut } from 'svelte/easing';
+    import { onMount } from 'svelte'
     import { page } from '$app/stores'
     import Fa from 'svelte-fa/src/fa.svelte'
     import { faCode } from '@fortawesome/free-solid-svg-icons/index.es'
     import Nav from './components/nav.svelte'
+    import MediaQuery from './components/MediaQuery.svelte'
+    let visible = false;
+    let drawLine = false;
+    onMount(() => {
+        visible = true;
+        setTimeout(() => {
+            drawLine = true;
+        }, 200);
+    })
     interface Project {
         name: string;
         description: string;
@@ -81,59 +93,74 @@ $: description = "On the left you'll see the projects I've made. Hover over them
         {$page.url.hash.charAt(1).toUpperCase() + $page.url.hash.substring(2)} - NanguRepo
     </title>
 </svelte:head>
-
 <html lang="en" class="scroll-smooth">
-    <body class="dark:bg-[#0D0D10] dark:text-neutral-400 selection:bg-black selection:text-white dark:selection:bg-yellow-300 dark:selection:text-black font-mono scroll-smooth">
-        <div class="w-full h-full">
-            <header class="relative w-full h-16">
-                <Nav/>
-            </header>
-            <main class="w-full">
-                <article class="max-w-[75ch] mx-auto pt-20 pb-28 px-5" id="about">
-                    <h1 class="text-3xl font-black dark:text-white">This is NanguRepo</h1>
-                    <div class="mt-5">
-                        <p>
-                            I'm a hobbyist web developer, and this is my repository for my web projects. I do freelance work on <a class="link" href="https://fiverr.com/nangu_" target="_blank">Fiverr</a>, while also building some projects of my own when I get an interesting idea.
-                        </p>
-                        <p class="mt-6">
-                            I'm also a frequent open source contributor and currently working on my latest project, my <a class="link" href="https://dvd.nangurepo.com" target="_blank">DVD screensaver generator</a>.
-                        </p>
-                        <p class="mt-6">
-                            My goal is to create truly functional web experiences with function over form as a general rule. If you want to reach out, find me on the web.
-                        </p>
-                    </div>
-                    <div class="flex flex-row w-full justify-center sm:justify-start sm:w-fit rounded gap-2 pt-2" id="projects">
-                        {#each contacts as contact}
-                        <a class="button font-sans" href={contact.url} target="_blank">
-                            {contact.platform}
-                        </a>
-                        {/each}
-                    </div>
-                    <h2 class="text-2xl font-bold dark:text-white mt-6">Projects</h2>
-                    <h3 class="text-xs">Click the title to visit the site.</h3>
-                    <div class="divide-y dark:divide-neutral-700 -mt-4">
-                        {#each projects as project}
-                        <div class="py-6">
-                            <div class="flex flex-row justify-between">
-                                <h3><a 
-                                class="dark:text-white dark:hover:bg-white dark:hover:text-black hover:bg-black hover:text-white hover:before:content-['>'] hover:underline -ml-1 px-1 py-1 font-bold"
-                                target="_blank"
-                                href={project.url}
-                                >
-                                    {project.name}
-                                </a></h3>
-                                <a class="link flex flex-row items-center gap-1 text-xs h-fit" href={project.source} target="_blank">
-                                    Source <Fa icon={faCode} size="10"/>
-                                </a>
-                            </div>
-                            <p class="text-sm">
-                                {project.description}
+    <body class="dark:bg-[#0D0D10] dark:text-neutral-300 selection:bg-black selection:text-white dark:selection:bg-yellow-300 dark:selection:text-black font-mono scroll-smooth">
+        {#if visible}
+            <div class="w-full h-full" transition:fade>
+                <header class="relative w-full h-16">
+                    <Nav/>
+                </header>
+                <main class="w-full">
+                    <article class="max-w-[75ch] mx-auto pt-20 pb-28 px-5" id="about">
+                        <div class="w-fit">
+                            <h1 class="text-3xl font-bold dark:text-white">This is NanguRepo</h1>
+                            <MediaQuery query="(prefers-color-scheme: dark)" let:matches>
+                                <svg class="w-full h-1" preserveAspectRatio="none">
+                                    {#if drawLine}
+                                        <path 
+                                        transition:draw="{{duration: 1500, easing: quintOut}}"
+                                        d="M0,0 L300,0 Z"
+                                        stroke={matches?"white":"black"}
+                                        stroke-width="1px"
+                                        />
+                                    {/if}
+                                </svg>
+                            </MediaQuery>
+                        </div>
+                        <div class="mt-5">
+                            <p>
+                                I'm a hobbyist web developer, and this is my repository for my web projects. I do freelance work on <a class="link" href="https://fiverr.com/nangu_" target="_blank">Fiverr</a>, while also building some <a class="link" href="#projects">projects</a> of my own when I get an interesting idea. I sometimes write webdev-related <a class="link" href="#posts">posts</a> on here.
+                            </p>
+                            <p class="mt-6">
+                                I don't really contribute to open source, but I'm currently working on my latest project, my <a class="link" href="https://dvd.nangurepo.com" target="_blank">DVD screensaver generator</a>.
+                            </p>
+                            <p class="mt-6">
+                                My goal is to create truly functional web experiences with function over form as a general rule of thumb. If you want to reach out, find me on the web.
                             </p>
                         </div>
-                        {/each}
-                    </div>
-                </article>
-            </main>
-        </div>
+                        <div class="flex flex-row w-full gap-1 pt-2" id="projects">
+                            {#each contacts as contact}
+                            <a class="button font-sans" href={contact.url} target="_blank">
+                                {contact.platform}
+                            </a>
+                            {/each}
+                        </div>
+                        <h2 class="text-2xl font-bold mt-6">Projects</h2>
+                        <h3 class="text-xs">Click the title to visit the site.</h3>
+                        <div class="divide-y dark:divide-neutral-700 -mt-4">
+                            {#each projects as project}
+                            <div class="py-6">
+                                <div class="flex flex-row justify-between">
+                                    <h3><a 
+                                    class="dark:text-white dark:hover:bg-neutral-600 hover:bg-black hover:text-white hover:before:content-['>'] hover:underline -ml-1 px-1 py-1 font-bold"
+                                    target="_blank"
+                                    href={project.url}
+                                    >
+                                        {project.name}
+                                    </a></h3>
+                                    <a class="link flex flex-row items-center gap-1 text-xs h-fit" href={project.source} target="_blank">
+                                        Source <Fa icon={faCode} size="10"/>
+                                    </a>
+                                </div>
+                                <p class="text-sm">
+                                    {project.description}
+                                </p>
+                            </div>
+                            {/each}
+                        </div>
+                    </article>
+                </main>
+            </div>
+        {/if}
     </body>
 </html>
