@@ -11,6 +11,7 @@
     import { faCode } from '@fortawesome/free-solid-svg-icons/index.es'
     import Nav from './components/nav.svelte'
     import MediaQuery from './components/MediaQuery.svelte'
+    import Scrolly from "./components/Scrolly.svelte";
     let visible = false;
     let drawLine = false;
     onMount(() => {
@@ -86,11 +87,15 @@ let contacts: Array<contact> = [
     }
 ]
 $: description = "On the left you'll see the projects I've made. Hover over them to see a description, and click to visit the project."
+let value: number;
 </script>
 
 <svelte:head>
     <title>
-        {$page.url.hash.charAt(1).toUpperCase() + $page.url.hash.substring(2)} - NanguRepo
+        {
+            $page.url.hash?$page.url.hash.charAt(1).toUpperCase() + $page.url.hash.substring(2) + " - ":""
+        }
+        NanguRepo
     </title>
 </svelte:head>
 <html lang="en" class="scroll-smooth">
@@ -98,66 +103,72 @@ $: description = "On the left you'll see the projects I've made. Hover over them
         {#if visible}
             <div class="w-full h-full" transition:fade>
                 <header class="relative w-full h-16">
-                    <Nav/>
+                    <Nav active={value}/>
                 </header>
                 <main class="w-full">
                     <article class="max-w-[75ch] mx-auto pt-20 pb-28 px-5" id="about">
-                        <div class="w-fit">
-                            <h1 class="text-3xl font-bold dark:text-white">This is NanguRepo</h1>
-                            <MediaQuery query="(prefers-color-scheme: dark)" let:matches>
-                                <svg class="w-full h-1" preserveAspectRatio="none">
-                                    {#if drawLine}
-                                        <path 
-                                        transition:draw="{{duration: 1500, easing: quintOut}}"
-                                        d="M0,0 L300,0 Z"
-                                        stroke={matches?"white":"black"}
-                                        stroke-width="1px"
-                                        />
-                                    {/if}
-                                </svg>
-                            </MediaQuery>
-                        </div>
-                        <div class="mt-5">
-                            <p>
-                                I'm a hobbyist web developer, and this is my repository for my web projects. I do freelance work on <a class="link" href="https://fiverr.com/nangu_" target="_blank">Fiverr</a>, while also building some <a class="link" href="#projects">projects</a> of my own when I get an interesting idea. I sometimes write webdev-related <a class="link" href="#posts">posts</a> on here.
-                            </p>
-                            <p class="mt-6">
-                                I don't really contribute to open source, but I'm currently working on my latest project, my <a class="link" href="https://dvd.nangurepo.com" target="_blank">DVD screensaver generator</a>.
-                            </p>
-                            <p class="mt-6">
-                                My goal is to create truly functional web experiences with function over form as a general rule of thumb. If you want to reach out, find me on the web.
-                            </p>
-                        </div>
-                        <div class="flex flex-row w-full gap-1 pt-2" id="projects">
-                            {#each contacts as contact}
-                            <a class="button font-sans" href={contact.url} target="_blank">
-                                {contact.platform}
-                            </a>
-                            {/each}
-                        </div>
-                        <h2 class="text-2xl font-bold mt-6">Projects</h2>
-                        <h3 class="text-xs">Click the title to visit the site.</h3>
-                        <div class="divide-y dark:divide-neutral-700 -mt-4">
-                            {#each projects as project}
-                            <div class="py-6">
-                                <div class="flex flex-row justify-between">
-                                    <h3><a 
-                                    class="dark:text-white dark:hover:bg-neutral-600 hover:bg-black hover:text-white hover:before:content-['>'] hover:underline -ml-1 px-1 py-1 font-bold"
-                                    target="_blank"
-                                    href={project.url}
-                                    >
-                                        {project.name}
-                                    </a></h3>
-                                    <a class="link flex flex-row items-center gap-1 text-xs h-fit" href={project.source} target="_blank">
-                                        Source <Fa icon={faCode} size="10"/>
-                                    </a>
+                        <Scrolly bind:value>
+                            <div>
+                                <div class="w-fit">
+                                    <h1 class="text-3xl font-bold dark:text-white">This is NanguRepo</h1>
+                                    <MediaQuery query="(prefers-color-scheme: dark)" let:matches>
+                                        <svg class="w-full h-1" preserveAspectRatio="none">
+                                            {#if drawLine}
+                                                <path 
+                                                transition:draw="{{duration: 1500, easing: quintOut}}"
+                                                d="M0,0 L300,0 Z"
+                                                stroke={matches?"white":"black"}
+                                                stroke-width="1px"
+                                                />
+                                            {/if}
+                                        </svg>
+                                    </MediaQuery>
                                 </div>
-                                <p class="text-sm">
-                                    {project.description}
-                                </p>
+                                <div class="mt-5">
+                                    <p>
+                                        I'm a hobbyist web developer, and this is my repository for my web projects. I do freelance work on <a class="link" href="https://fiverr.com/nangu_" target="_blank">Fiverr</a>, while also building some <a class="link" href="#projects">projects</a> of my own when I get an interesting idea. I sometimes write webdev-related <a class="link" href="#posts">posts</a> on here.
+                                    </p>
+                                    <p class="mt-6">
+                                        I don't really contribute to open source, but I'm currently working on my latest project, my <a class="link" href="https://dvd.nangurepo.com" target="_blank">DVD screensaver generator</a>.
+                                    </p>
+                                    <p class="mt-6">
+                                        My goal is to create truly functional web experiences with function over form as a general rule of thumb. If you want to reach out, find me on the web.
+                                    </p>
+                                </div>
+                                <div class="flex flex-row w-full gap-1 pt-2" id="projects">
+                                    {#each contacts as contact}
+                                    <a class="button font-sans" href={contact.url} target="_blank">
+                                        {contact.platform}
+                                    </a>
+                                    {/each}
+                                </div>
                             </div>
-                            {/each}
-                        </div>
+                            <div>
+                                <h2 class="text-2xl font-bold mt-6">Projects</h2>
+                                <h3 class="text-xs">Click the title to visit the site.</h3>
+                                <div class="divide-y dark:divide-neutral-700 -mt-4">
+                                    {#each projects as project}
+                                    <div class="py-6">
+                                        <div class="flex flex-row justify-between">
+                                            <h3><a 
+                                            class="dark:text-white dark:hover:bg-neutral-600 hover:bg-black hover:text-white hover:before:content-['>'] hover:underline -ml-1 px-1 py-1 font-bold"
+                                            target="_blank"
+                                            href={project.url}
+                                            >
+                                                {project.name}
+                                            </a></h3>
+                                            <a class="link flex flex-row items-center gap-1 text-xs h-fit" href={project.source} target="_blank">
+                                                Source <Fa icon={faCode} size="10"/>
+                                            </a>
+                                        </div>
+                                        <p class="text-sm">
+                                            {project.description}
+                                        </p>
+                                    </div>
+                                    {/each}
+                                </div>
+                            </div>
+                        </Scrolly>
                     </article>
                 </main>
             </div>
