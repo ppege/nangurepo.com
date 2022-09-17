@@ -83,7 +83,10 @@ let contacts: Array<contact> = [
         url: "https://twitter.com/ytnangu"
     }, {
         platform: "discord",
-        url: "https://discord.gg/xJK9VtVguF"
+        url: "https://discord.com/users/273845229130481665"
+    }, {
+	platform: "discord server",
+	url: "https://discord.gg/xJK9VtVguF"
     }
 ]
 $: description = "On the left you'll see the projects I've made. Hover over them to see a description, and click to visit the project."
