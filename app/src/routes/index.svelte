@@ -32,6 +32,11 @@
     }
     let projects: Array<Project> = [
         {
+            name: "Assassin! Tools",
+            description: "A web app that helps with a lot of things in the Roblox game, \"Assassin!\". Functionalities like an item search, inventory manager and trade calculator make it extremely useful, as the official value list is a spreadsheet with no search functionality, and you can't see values of items in-game.",
+            url: "https://assassin.nangurepo.com",
+            source: "https://github.com/nangurepo/assassinsearcher"
+        }, {
             name: "DVD Screensaver Generator",
             description: "A tool to generate your own version of the iconic DVD screensaver. You can tweak and customize it to your heart's content. It's customizable from the speed at which it travels, to the images used, to what happens on collision.",
             url: "https://dvd.nangurepo.com",
@@ -53,17 +58,12 @@
             source: "https://github.com/nangurepo/vsc-viewer"
         }, {
             name: "Fessor Bot",
-            description: "A Discord bot i made in the start of 2021 using discord.py. It has some uniquely useful commands, such as my personal favorite, /bury: clear the chat without deleting messages by having the bot send a shit ton of Zero-Width Non-Joiners. The bot is currently private, but if you need it on your server, contact me.",
+            description: "A Discord bot I made in the start of 2021 using discord.py. It has some uniquely useful commands, such as my personal favorite, /bury: clear the chat without deleting messages by having the bot send a shit ton of Zero-Width Non-Joiners. The bot is currently private, but if you need it on your server, contact me.",
             url: "/",
             source: "github.com/nangurepo/fessor"
         }, {
-            name: "Assassin! Tools",
-            description: "A web app that helps find values of knives in the Roblox game, \"Assassin!\". I made this a while ago using vanilla JS, and I haven't updated the values in months. Don't use this for anything other than testing. It was extremely useful, as the official value list is a spreadsheet with no search functionality.",
-            url: "https://assassin.nangurepo.com",
-            source: "https://github.com/nangurepo/assassinsearcher"
-        }, {
             name: "NanguRepo API",
-            description: "The API used by my other projects. It's public, you can use it for your own projects if you'd like. This is the API through which to access Viggoscrape. It was also used by the Assassin! Tools app.",
+            description: "The API used by my other projects. It's public, you can use it for your own projects if you'd like. This is the API through which to access Viggoscrape.",
             url: "https://api.nangurepo.com",
             source: "https://github.com/nangurepo/viggoscrapeapi/tree/api"
         }
@@ -113,13 +113,13 @@ let value: number;
                         <Scrolly bind:value>
                             <div>
                                 <div class="w-fit">
-                                    <h1 class="text-3xl font-bold dark:text-white">This is NanguRepo</h1>
+                                    <h1 class="text-3xl font-black dark:text-white">I'm nangu</h1>
                                     <MediaQuery query="(prefers-color-scheme: dark)" let:matches>
                                         <svg class="w-full h-1" preserveAspectRatio="none">
                                             {#if drawLine}
                                                 <path 
                                                 transition:draw="{{duration: 1500, easing: quintOut}}"
-                                                d="M0,0 L300,0 Z"
+                                                d="M0,0 L175,0 Z"
                                                 stroke={matches?"white":"black"}
                                                 stroke-width="1px"
                                                 />
@@ -132,7 +132,7 @@ let value: number;
                                         I'm a hobbyist web developer, and this is my repository for my web projects. I do freelance work on <a class="link" href="https://fiverr.com/nangu_" target="_blank">Fiverr</a>, while also building some <a class="link" href="#projects">projects</a> of my own when I get an interesting idea. I sometimes write webdev-related <a class="link" href="#posts">posts</a> on here.
                                     </p>
                                     <p class="mt-6">
-                                        I don't really contribute to open source, but I'm currently working on my latest project, my <a class="link" href="https://dvd.nangurepo.com" target="_blank">DVD screensaver generator</a>.
+                                        I don't really contribute to open source, but I'm currently working on my latest project, <a class="link" href="https://assassin.nangu.dev" target="_blank">Assassin! Tools</a>.
                                     </p>
                                     <p class="mt-6">
                                         My goal is to create truly functional web experiences with function over form as a general rule of thumb. If you want to reach out, find me on the web.
@@ -146,7 +146,7 @@ let value: number;
                                     {/each}
                                 </div>
                             </div>
-                            <div>
+                            <div class="mt-12">
                                 <h2 class="text-2xl font-bold mt-6">Projects</h2>
                                 <h3 class="text-xs">Click the title to visit the site.</h3>
                                 <div class="divide-y dark:divide-neutral-700 -mt-4">
@@ -171,6 +171,12 @@ let value: number;
                                     {/each}
                                 </div>
                             </div>
+                            <div class="mt-12" id="posts">
+                                <h2 class="text-2xl font-bold mt-6">Posts</h2>
+                                <img class="mt-2 mb-2" src="https://media.tenor.com/ZQfq0ocLmAoAAAAC/breaking-bad-walter-white.gif" alt=""/>
+                                <p class="text-zinc-600 dark:text-zinc-400">Ok, the posts were a lie. A ruse. Thin air. Snake oil, even. But I'll probably write some soon!</p>
+                            </div>
+                            <div class="mt-80"/>
                         </Scrolly>
                     </article>
                 </main>

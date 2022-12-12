@@ -8,7 +8,7 @@
 <div class="fixed h-16 z-40 w-full flex justify-between backdrop-blur-[20px] backdrop-saturate-150 bg-white/50 dark:bg-[#0D0D1050]">
     <nav class="w-full sm:max-w-[75ch] m-auto flex px-5 justify-between items-center">
         <div>
-            <a href="/" class="hover:text-neutral-700 dark:hover:text-accent transition-colors">nangurepo</a>
+            <a href="/" class="hover:text-neutral-700 dark:hover:text-accent transition-colors">nangu</a>
         </div>
         <div>
             {#each items as item, index}
