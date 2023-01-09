@@ -34,27 +34,27 @@
         {
             name: "Assassin! Tools",
             description: "A web app that helps with a lot of things in the Roblox game, \"Assassin!\". Functionalities like an item search, inventory manager and trade calculator make it extremely useful, as the official value list is a spreadsheet with no search functionality, and you can't see values of items in-game.",
-            url: "https://assassin.nangurepo.com",
+            url: "https://assassin.nangu.dev",
             source: "https://github.com/nangurepo/assassinsearcher"
         }, {
             name: "DVD Screensaver Generator",
             description: "A tool to generate your own version of the iconic DVD screensaver. You can tweak and customize it to your heart's content. It's customizable from the speed at which it travels, to the images used, to what happens on collision.",
-            url: "https://dvd.nangurepo.com",
+            url: "https://dvd.nangu.dev",
             source: "https://github.com/nangurepo/dvd"
         }, {
             name: "Collatz Conjecture Visualizer",
             description: "A web app that visualizes the Collatz conjecture using a graph. The Collatz conjecture is one of the most famous unsolved problems in mathematics. The conjecture asks whether repeating two simple arithmetic operations will eventually transform every positive integer into 1.",
-            url: "https://collatz.nangurepo.com",
+            url: "https://collatz.nangu.dev",
             source: "https://github.com/nangurepo/collatz"
         }, {
             name: "Viggoscrape",
             description: "An unofficial API for Viggo, a danish school management website. It allows you to get assignment data to use in other applications. Through several iterations, I have gotten the response time down to less than a second. Viggo does have a built-in API, but it's extremely obscure, and I still haven't figured out how to use it.",
-            url: "https://viggoscrape.nangurepo.com",
+            url: "https://viggoscrape.nangu.dev",
             source: "https://github.com/nangurepo/viggoscrapeapi/tree/page"
         }, {
             name: "Viggo Viewer",
             description: "A viewer for the Viggo website, as I didn't like the official one. Built with React. Powered by, you guessed it, Viggoscrape. And most importantly, it's open source. It even remembers your login details, so you don't have to login every time you visit the site. This is somehow not a feature on the official site.",
-            url: "https://viewer.nangurepo.com",
+            url: "https://viewer.nangu.dev",
             source: "https://github.com/nangurepo/vsc-viewer"
         }, {
             name: "Fessor Bot",
@@ -64,7 +64,7 @@
         }, {
             name: "NanguRepo API",
             description: "The API used by my other projects. It's public, you can use it for your own projects if you'd like. This is the API through which to access Viggoscrape.",
-            url: "https://api.nangurepo.com",
+            url: "https://api.nangu.dev",
             source: "https://github.com/nangurepo/viggoscrapeapi/tree/api"
         }
     ]
